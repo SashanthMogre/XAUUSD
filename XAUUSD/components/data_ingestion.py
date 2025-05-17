@@ -1,8 +1,8 @@
 import os
 import sys
 import pandas as pd
-from XAUUSD.exception import XAUUSDException
-from XAUUSD.logging import logger
+from XAUUSD.exception.exception import XAUUSDException
+from XAUUSD.logging.logger import logging
 from XAUUSD.entity.config_entity import DataIngestionConfig
 from XAUUSD.entity.artifact_entity import DataIngestionArtifact
 
@@ -19,7 +19,7 @@ class DataIngestion:
             df = pd.read_csv(raw_file_path)
             df["Date"] = pd.to_datetime(df["Date"])  
             df = df.sort_values("Date")
-            logger.info(f"Loaded data from {raw_file_path}")
+            logging.info(f"Loaded data from {raw_file_path}")
             return df
         except Exception as e:
             raise XAUUSDException(e, sys)
@@ -29,7 +29,7 @@ class DataIngestion:
             feature_store_path = self.data_ingestion_config.feature_store_file_path
             os.makedirs(os.path.dirname(feature_store_path), exist_ok=True)
             df.to_csv(feature_store_path, index=False)
-            logger.info(f"Exported full dataset to feature store at {feature_store_path}")
+            logging.info(f"Exported full dataset to feature store at {feature_store_path}")
             return df
         except Exception as e:
             raise XAUUSDException(e, sys)
@@ -46,7 +46,7 @@ class DataIngestion:
             train_df.to_csv(self.data_ingestion_config.training_file_path, index=False)
             test_df.to_csv(self.data_ingestion_config.testing_file_path, index=False)
 
-            logger.info("Train/Test split successful.")
+            logging.info("Train/Test split successful.")
         except Exception as e:
             raise XAUUSDException(e, sys)
 
