@@ -4,7 +4,7 @@ import numpy as np
 # Project Identity 
 PIPELINE_NAME: str = "XAUUSD"
 ARTIFACT_DIR: str = "Artifacts"
-FILE_NAME: str = "xauusd.xlsx"  
+FILE_NAME: str = "XAUUSD_data.csv"  
 
 # Output CSV Names
 TRAIN_FILE_NAME: str = "train.csv"

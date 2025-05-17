@@ -18,10 +18,12 @@ class DataIngestionConfig:
             training_pipeline.DATA_INGESTION_DIR_NAME
         )
         
+        self.raw_file_name = training_pipeline.FILE_NAME
+
         self.feature_store_file_path = os.path.join(
             self.data_ingestion_dir,
             training_pipeline.DATA_INGESTION_FEATURE_STORE_DIR,
-            training_pipeline.FILE_NAME.replace(".xlsx", ".csv")
+            training_pipeline.FILE_NAME
         )
 
         self.training_file_path = os.path.join(
